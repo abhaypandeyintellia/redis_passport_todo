@@ -2,7 +2,7 @@ import ToggleSwitch from "./ToggleSwitch";
 import StatusBadge from "./StatusBadge";
 import { FaEdit, FaEye } from "react-icons/fa";
 
-export default function DriverTable({ data, onToggle }) {
+export default function RiderTable({ data, onToggle, onEditClick, onProfileClick }) {
   return (
     <div className="bg-white rounded-lg shadow overflow-hidden overflow-x-auto m-2">
       <table className="w-full text-sm">
@@ -12,7 +12,7 @@ export default function DriverTable({ data, onToggle }) {
               "ID",
               "Name",
               "Phone",
-              "Vehicle",
+              "Total Rides",
               "Status",
               "Available for ride",
               "Action",
@@ -30,23 +30,29 @@ export default function DriverTable({ data, onToggle }) {
               <td className="px-4 py-3 text-gray-700">{driver.id}</td>
               <td className="px-4 py-3 text-gray-700">{driver.name}</td>
               <td className="px-4 py-3 text-gray-700">{driver.phone}</td>
-              <td className="px-4 py-3 text-gray-700">{driver.vehicle}</td>
+              <td className="px-4 py-3 text-gray-700">{driver.totalrides}</td>
 
               <td className="px-4 py-3">
-                <StatusBadge label={driver.status} />
+                <StatusBadge label={driver.status} status={driver.available} />
               </td>
 
               <td className="px-4 py-3">
                 <ToggleSwitch
                   checked={driver.available}
-                  onChange={(value) => onToggle(driver.id, value)}
+                  onChange={(value) => onToggle?.(driver.id, value)}
                 />
               </td>
 
               <td className="px-4 py-3 flex gap-3 text-gray-600">
-                <FaEdit className="cursor-pointer hover:text-blue-600" />
-                <FaEye className="cursor-pointer hover:text-green-600" />
+                <FaEdit
+                  className="cursor-pointer hover:text-blue-600"
+                  onClick={() => onEditClick?.(driver)}
+                />
+                <FaEye className="cursor-pointer hover:text-green-600"
+                onClick={() => onProfileClick?.(driver)}
+                />
               </td>
+              
             </tr>
           ))}
         </tbody>

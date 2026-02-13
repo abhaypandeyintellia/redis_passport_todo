@@ -1,6 +1,5 @@
 import RideOverview from '../components/RideOverview'
 import TopDriver from '../components/TopDriver'
-import DataTable from '../components/DataTable'
 import StatusBadge from '../components/StatusBadge'
 import ridesData from '../lib/ridesData'
 import DummyTable from '../components/DummyTable'
@@ -44,14 +43,13 @@ const Dashboard = () => {
         </div>
     </div>
     <div>
-        <div className='p-4 bg-white'>
-            <h1 className='text-lg font-bold'>RECENT RIDES</h1>
-        </div>
-        {/* <DataTable columns={driverColumns} data={ridesData} showActions={false}/> */}
+        <div className="mx-2 mt-2 bg-white px-4 py-3 rounded-t-lg border-b border-gray-100">
+        <h1 className="text-lg font-bold">DRIVER LIST</h1>
+      </div>
         <DummyTable columns={driverColumns} data={ridesData} showActions={false}/>
     </div>
     </>
   )
 }
 
-export default Dashboard
+export default Dashboard;
